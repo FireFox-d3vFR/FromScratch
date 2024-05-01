@@ -1,0 +1,196 @@
+/* Importation des polices par url */
+;
+
+/* Importation des polices par fichier */
+@font-face {
+  font-family: "Rubik";
+  src: url(./assets/RubikDoodleShadow-Regular.ttf);
+}
+/* L'étoile donne du style à TOUS les éléments par défaut */
+/* * {
+    margin: 0;
+    padding: 0;
+    border: red; // Cela peut être utile pour encadrer tous les éléments
+} */
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: url(./assets/bkg-pic.png) center/cover;
+  /* VH = 100% de la taille de l'écran (viewport height) */
+  min-height: 100vh;
+}
+
+h1 {
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-align: center;
+  /* Les tailles de polices doivent être en REM 1rem = 16px */
+  font-size: 8vw;
+  /* VW : ViewPort Width = taille proportionné */
+  text-shadow: 2px 2px 8px #00000080;
+  color: #ff630bcc;
+  font-family: "Rubik", sans-serif;
+}
+
+main {
+  min-height: 500px;
+  width: 90%;
+  background: rgba(255, 255, 255, 0.25);
+  /* Centrer une boîte */
+  margin: 0 auto;
+  border: 2px solid #ff630bcc;
+  border-radius: 20px;
+  box-shadow: 0 0 20px 5px #ac18a6;
+  padding: 15px;
+}
+
+h2 {
+  margin: 0;
+}
+
+/* Design par défaut des boîtes */
+.flexbox,
+.grid,
+.absolute {
+  border: 2px solid skyblue;
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 20px;
+  min-height: 150px;
+}
+
+/* FLEXBOX  */
+/* Sert à répartir équitablement des éléments sur la page */
+
+.flexbox ul {
+  padding: 0;
+  /* Mettre côte à côte */
+  display: flex;
+  justify-content: space-around;
+}
+
+.flexbox li {
+  list-style: none;
+  height: 160px;
+  width: 160px;
+  margin: 10px;
+  background: rgba(64, 224, 208, 0.33);
+  /* Centrer un unique élément verticalement et horizontalement */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* GRID */
+.grid-container {
+  display: grid;
+  grid-template-columns: 30% 70%;
+}
+
+.grid img {
+  width: 80%;
+  margin: 20px auto;
+  display: block;
+}
+
+form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-areas:
+    "i1 i2"
+    "ta ta"
+    "vi bt";
+}
+
+input,
+textarea {
+  margin: 5px;
+  border: 1px solid darkblue;
+  padding: 10px;
+  font-size: 1.1rem;
+  font-family: "Poppins", sans-serif;
+  border-radius: 5px;
+}
+
+textarea {
+  grid-area: ta;
+  height: 40px;
+  /* Impossible de redimensionner la zone */
+  resize: none;
+}
+
+#btn-submit {
+  grid-area: bt;
+  cursor: pointer;
+  background: cyan;
+  transition: 0.2s;
+}
+
+#btn-submit:hover {
+  background: darkblue;
+  color: white;
+}
+
+/* ABSOLUTE */
+/* Sans élément relative, de base l'élément en absolute par rapport au body */
+/* Il faut mettre une position relative aux parents pour contraindre l'élément en absolute dans ses frontières */
+.absolute {
+  position: relative;
+}
+
+#circle1 {
+  height: 80px;
+  width: 80px;
+  background: skyblue;
+  position: absolute;
+  border-radius: 150px;
+  top: 0;
+  right: 0;
+}
+
+#circle2 {
+  height: 40px;
+  width: 40px;
+  border-radius: 150px;
+  background-color: teal;
+  position: absolute;
+  /* Pour centrer l'élément en absolute */
+  left: 50%;
+  transform: translateX(-50%);
+  top: 100px;
+}
+
+/* RESPONSIVE */
+@media screen and (max-width: 900px) {
+  .grid-container {
+    display: block;
+  }
+
+  .grid-container img {
+    width: 40%;
+  }
+}
+
+@media screen and (max-width: 610px) {
+  .flexbox ul {
+    flex-direction: column;
+    align-items: center;
+  }
+  form {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas:
+      "i1"
+      "i2"
+      "ta"
+      "bt";
+  }
+}
+
+@media screen and (max-width: 350px) {
+  input,
+  textarea {
+    font-size: 0.8rem;
+  }
+}
